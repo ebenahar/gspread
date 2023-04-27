@@ -561,7 +561,7 @@ def cell_list_to_rect(cell_list):
 
     if not rows:
         return []
-
+    from ipdb import set_trace; set_trace()
     all_row_keys = chain.from_iterable(row.keys() for row in rows.values())
     rect_cols = range(max(all_row_keys) + 1)
     rect_rows = range(max(rows.keys()) + 1)
