@@ -2321,6 +2321,26 @@ class Worksheet:
             ]
         }
         self.spreadsheet.batch_update(body)
+    
+    def update_notes(self, range, notes_list):
+
+        grid_range = a1_range_to_grid_range(range, self.id)
+        
+        rows = list()
+        for notes in notes_list:
+            rows.append({"values": [{"note": notes}]})
+        body = {
+            "requests": [
+                {
+                    "updateCells": {
+                        "range": grid_range,
+                        "rows": rows,
+                        "fields": "note",
+                    }
+                }
+            ]
+        }
+        self.spreadsheet.batch_update(body)
 
     @cast_to_a1_notation
     def insert_note(self, cell, content):
