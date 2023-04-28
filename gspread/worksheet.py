@@ -2325,16 +2325,13 @@ class Worksheet:
     def update_notes(self, range, notes_list):
 
         grid_range = a1_range_to_grid_range(range, self.id)
-        
-        rows = list()
-        for notes in notes_list:
-            rows.append({"values": [{"note": notes}]})
+
         body = {
             "requests": [
                 {
                     "updateCells": {
                         "range": grid_range,
-                        "rows": rows,
+                        "rows": [{"values": notes_list}],
                         "fields": "note",
                     }
                 }
